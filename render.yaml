@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: gym-tracker-api
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: MONGO_URI
+        sync: false
