@@ -1,13 +1,11 @@
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-
 export const getWorkouts = async () => {
-  const res = await fetch(`${API_URL}/workouts`);
+  const res = await fetch("/api/workouts");
   if (!res.ok) throw new Error("Failed to fetch workouts");
   return res.json();
 };
 
 export const addWorkout = async (workoutData) => {
-  const res = await fetch(`${API_URL}/add-workout`, {
+  const res = await fetch("/api/add-workout", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(workoutData),
@@ -17,7 +15,7 @@ export const addWorkout = async (workoutData) => {
 };
 
 export const deleteWorkout = async (id) => {
-  const res = await fetch(`${API_URL}/workouts/${id}`, {
+  const res = await fetch(`/api/workouts/${id}`, {
     method: "DELETE",
   });
   if (!res.ok) throw new Error("Failed to delete workout");
