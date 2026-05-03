@@ -1,0 +1,181 @@
+.log-page {
+  min-height: 100vh;
+  background: #0f0f1a;
+  padding: 1rem;
+}
+
+.log-header {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}
+
+.back-btn {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  color: #a0a0b0;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: #2a2a4a;
+}
+
+.log-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #1a1a2e;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #2a2a4a;
+}
+
+.exercise-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.muscle-badge {
+  display: inline-block;
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.exercise-info h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: #a0a0b0;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input {
+  background: #0f0f1a;
+  border: 1px solid #2a2a4a;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.2);
+}
+
+.form-group input::placeholder {
+  color: #555570;
+}
+
+.form-error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 1rem 0 0;
+}
+
+.form-success {
+  color: #4ecdc4;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 1rem 0 0;
+  font-weight: 500;
+}
+
+.save-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #e94560, #ff6b6b);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.save-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+}
+
+.save-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.log-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #2a2a4a;
+}
+
+.log-footer a {
+  color: #a0a0b0;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.log-footer a:hover {
+  color: #e94560;
+}
+
+@media (max-width: 600px) {
+  .log-form {
+    padding: 1.5rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .log-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
