@@ -27,7 +27,7 @@ function HistoryPage() {
       }
     };
     fetchWorkouts();
-  }, []);
+  }, [decodedExercise]);
 
   const handleDelete = async (id) => {
     await deleteWorkout(id);
