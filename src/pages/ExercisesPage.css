@@ -33,6 +33,15 @@
   font-size: 1.5rem;
   color: #ffffff;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ex-header-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .exercises-list {

@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import { muscleGroups, exercisesByMuscle } from "../data/exercises";
 import "./HomePage.css";
 
+function MuscleIcon({ icon, color }) {
+  if (icon.startsWith("/")) {
+    return <img src={icon} alt="" className="muscle-img" />;
+  }
+  return <span className="muscle-icon" style={{ color }}>{icon}</span>;
+}
+
 function HomePage() {
   return (
     <div className="home">
@@ -14,9 +21,7 @@ function HomePage() {
         {muscleGroups.map((group) => (
           <Link to={`/exercises/${group.id}`} key={group.id} className="muscle-card-link">
             <div className="muscle-card" style={{ borderColor: group.color }}>
-              <span className="muscle-icon" style={{ color: group.color }}>
-                {group.icon}
-              </span>
+              <MuscleIcon icon={group.icon} color={group.color} />
               <h3>{group.name}</h3>
               <span className="exercise-count">
                 {exercisesByMuscle[group.id].length} exercises

@@ -2,7 +2,7 @@ export const muscleGroups = [
   {
     id: "chest",
     name: "Chest",
-    icon: "🫁",
+    icon: "/images/chest.png",
     color: "#e94560",
   },
   {

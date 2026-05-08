@@ -24,7 +24,11 @@ function ExercisesPage() {
           &#8592; Back
         </Link>
         <h1>
-          <span style={{ color: group.color }}>{group.icon}</span> {group.name}
+          {group.icon.startsWith("/")
+            ? <img src={group.icon} alt="" className="ex-header-img" />
+            : <span style={{ color: group.color }}>{group.icon}</span>
+          }
+          {" "}{group.name}
         </h1>
       </div>
       <div className="exercises-list">
