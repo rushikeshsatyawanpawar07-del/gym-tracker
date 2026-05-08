@@ -61,8 +61,8 @@
 }
 
 .muscle-img {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   display: block;
   margin: 0 auto 0.75rem;

@@ -8,19 +8,19 @@ export const muscleGroups = [
   {
     id: "back",
     name: "Back",
-    icon: "🔙",
+    icon: "/images/back.png",
     color: "#ff6b6b",
   },
   {
     id: "shoulders",
     name: "Shoulders",
-    icon: "💪",
+    icon: "/images/shoulder.png",
     color: "#4ecdc4",
   },
   {
     id: "biceps",
     name: "Biceps",
-    icon: "💪",
+    icon: "/images/bicep.png",
     color: "#45b7d1",
   },
   {
@@ -32,13 +32,13 @@ export const muscleGroups = [
   {
     id: "forearms",
     name: "Forearms",
-    icon: "✊",
+    icon: "/images/forearms.png",
     color: "#feca57",
   },
   {
     id: "legs",
     name: "Legs",
-    icon: "🦵",
+    icon: "/images/legs.png",
     color: "#ff9ff3",
   },
 ];
