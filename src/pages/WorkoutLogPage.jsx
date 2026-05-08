@@ -49,8 +49,8 @@ function WorkoutLogPage() {
           <button onClick={() => navigate(-1)} className="nav-btn">
             &#8592; Back
           </button>
-          <Link to={`/exercises/${muscleId}`} className="nav-btn">
-            Previous Exercises
+          <Link to={`/history/${muscleId}/${exerciseName}`} className="nav-btn">
+            Previous Workouts
           </Link>
         </div>
       </div>

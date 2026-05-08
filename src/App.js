@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ExercisesPage from "./pages/ExercisesPage";
 import WorkoutLogPage from "./pages/WorkoutLogPage";
+import HistoryPage from "./pages/HistoryPage";
 import "./App.css";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/exercises/:muscleId" element={<ExercisesPage />} />
       <Route path="/log/:muscleId/:exerciseName" element={<WorkoutLogPage />} />
+      <Route path="/history/:muscleId/:exerciseName" element={<HistoryPage />} />
     </Routes>
   );
 }
