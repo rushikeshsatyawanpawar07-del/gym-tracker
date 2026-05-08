@@ -45,9 +45,14 @@ function WorkoutLogPage() {
   return (
     <div className="log-page">
       <div className="log-header">
-        <button onClick={() => navigate(-1)} className="back-btn">
-          &#8592; Back
-        </button>
+        <div className="log-nav">
+          <button onClick={() => navigate(-1)} className="nav-btn">
+            &#8592; Back
+          </button>
+          <Link to={`/exercises/${muscleId}`} className="nav-btn">
+            Previous Exercises
+          </Link>
+        </div>
       </div>
       <div className="log-form">
         <div className="exercise-info">
@@ -67,6 +72,7 @@ function WorkoutLogPage() {
                 onChange={(e) => setSets(e.target.value)}
                 placeholder="4"
                 min="1"
+                autoFocus
               />
             </div>
             <div className="form-group">
@@ -101,7 +107,7 @@ function WorkoutLogPage() {
         </form>
         <div className="log-footer">
           <Link to={`/exercises/${muscleId}`}>
-            &larr; Back to {group?.name} exercises
+            &larr; More {group?.name} exercises
           </Link>
           <Link to="/">All muscle groups</Link>
         </div>
