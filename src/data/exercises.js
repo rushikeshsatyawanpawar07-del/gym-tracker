@@ -26,7 +26,7 @@ export const muscleGroups = [
   {
     id: "triceps",
     name: "Triceps",
-    icon: "🦾",
+    icon: "/images/tricep.png",
     color: "#96ceb4",
   },
   {
@@ -40,6 +40,12 @@ export const muscleGroups = [
     name: "Legs",
     icon: "/images/legs.png",
     color: "#ff9ff3",
+  },
+  {
+    id: "abs",
+    name: "Abs",
+    icon: "/images/abs.png",
+    color: "#a29bfe",
   },
 ];
 
@@ -118,5 +124,18 @@ export const exercisesByMuscle = {
     "Calf Raises",
     "Bulgarian Split Squat",
     "Hack Squat",
+  ],
+  abs: [
+    "Crunches",
+    "Planks",
+    "Leg Raises",
+    "Russian Twists",
+    "Cable Crunch",
+    "Hanging Leg Raise",
+    "Ab Wheel Rollout",
+    "V-Ups",
+    "Mountain Climbers",
+    "Bicycle Crunches",
+    "Toes to Bar",
   ],
 };
