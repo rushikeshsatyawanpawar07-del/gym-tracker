@@ -17,6 +17,13 @@ function ExercisesPage() {
     );
   }
 
+  const openTutorial = (e, exercise) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const query = encodeURIComponent(`how to do ${exercise} exercise`);
+    window.open(`https://www.youtube.com/results?search_query=${query}`, "_blank", "noopener");
+  };
+
   return (
     <div className="exercises-page">
       <div className="exercises-header">
@@ -41,6 +48,13 @@ function ExercisesPage() {
             <div className="exercise-card">
               <div className="exercise-number">{index + 1}</div>
               <span className="exercise-name">{exercise}</span>
+              <button
+                className="tutorial-btn"
+                onClick={(e) => openTutorial(e, exercise)}
+                title="Watch tutorial on YouTube"
+              >
+                &#9654;
+              </button>
               <span className="arrow">&#8594;</span>
             </div>
           </Link>

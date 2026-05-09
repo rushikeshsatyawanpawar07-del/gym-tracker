@@ -94,6 +94,30 @@
   font-weight: 500;
 }
 
+.tutorial-btn {
+  background: transparent;
+  border: 1px solid #2a2a4a;
+  color: #ff0000;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.tutorial-btn:hover {
+  background: #ff0000;
+  border-color: #ff0000;
+  color: #fff;
+  transform: scale(1.1);
+}
+
 .arrow {
   color: #555570;
   font-size: 1.2rem;

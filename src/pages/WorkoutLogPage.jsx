@@ -60,6 +60,15 @@ function WorkoutLogPage() {
             {group?.icon} {group?.name}
           </span>
           <h2>{decodedExercise}</h2>
+          <button
+            className="tutorial-link"
+            onClick={() => {
+              const query = encodeURIComponent(`how to do ${decodedExercise} exercise`);
+              window.open(`https://www.youtube.com/results?search_query=${query}`, "_blank", "noopener");
+            }}
+          >
+            &#9654; Watch Tutorial
+          </button>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
