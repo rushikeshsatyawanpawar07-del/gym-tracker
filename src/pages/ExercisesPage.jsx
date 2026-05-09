@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { muscleGroups, exercisesByMuscle } from "../data/exercises";
-import { getTutorialUrl } from "../data/exerciseVideos";
 import "./ExercisesPage.css";
 
 function ExercisesPage() {
@@ -21,7 +20,8 @@ function ExercisesPage() {
   const openTutorial = (e, exercise) => {
     e.preventDefault();
     e.stopPropagation();
-    window.open(getTutorialUrl(exercise), "_blank", "noopener");
+    const query = encodeURIComponent(`how to do ${exercise} exercise`);
+    window.open(`https://www.youtube.com/results?search_query=${query}`, "_blank", "noopener");
   };
 
   return (
