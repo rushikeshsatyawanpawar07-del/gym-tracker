@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { muscleGroups } from "../data/exercises";
+import { getTutorialUrl } from "../data/exerciseVideos";
 import { addWorkout } from "../services/api";
 import "./WorkoutLogPage.css";
 
@@ -63,8 +64,7 @@ function WorkoutLogPage() {
           <button
             className="tutorial-link"
             onClick={() => {
-              const query = encodeURIComponent(`how to do ${decodedExercise} exercise`);
-              window.open(`https://www.youtube.com/results?search_query=${query}`, "_blank", "noopener");
+              window.open(getTutorialUrl(decodedExercise), "_blank", "noopener");
             }}
           >
             &#9654; Watch Tutorial
