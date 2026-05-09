@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://gym-tracker-vcu0.onrender.com/$1"
+    }
+  ]
+}
