@@ -55,7 +55,11 @@ function HistoryPage() {
         </Link>
         <div className="history-title">
           <span className="muscle-badge" style={{ backgroundColor: group?.color }}>
-            {group?.icon} {group?.name}
+            {group?.icon?.startsWith("/")
+              ? <img src={group.icon} alt="" className="badge-img" />
+              : group?.icon
+            }
+            {" "}{group?.name}
           </span>
           <h1>{decodedExercise}</h1>
           <p className="history-subtitle">Previous Workouts</p>

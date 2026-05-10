@@ -57,7 +57,11 @@ function WorkoutLogPage() {
       <div className="log-form">
         <div className="exercise-info">
           <span className="muscle-badge" style={{ backgroundColor: group?.color }}>
-            {group?.icon} {group?.name}
+            {group?.icon?.startsWith("/")
+              ? <img src={group.icon} alt="" className="badge-img" />
+              : group?.icon
+            }
+            {" "}{group?.name}
           </span>
           <h2>{decodedExercise}</h2>
           <button
