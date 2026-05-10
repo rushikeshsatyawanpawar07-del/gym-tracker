@@ -50,14 +50,20 @@
 }
 
 .muscle-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: scale(1.08);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+  border-color: #e94560;
+}
+
+.muscle-card:hover .muscle-img {
+  transform: scale(1.15);
 }
 
 .muscle-icon {
   font-size: 2.5rem;
   display: block;
   margin-bottom: 0.75rem;
+  transition: transform 0.3s;
 }
 
 .muscle-img {
@@ -66,6 +72,7 @@
   object-fit: contain;
   display: block;
   margin: 0 auto 0.75rem;
+  transition: transform 0.3s;
 }
 
 .muscle-card h3 {

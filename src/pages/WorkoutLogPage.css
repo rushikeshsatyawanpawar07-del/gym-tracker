@@ -41,6 +41,12 @@
   border-radius: 14px;
   padding: 2rem;
   border: 1px solid #2a2a4a;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.log-form:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .exercise-info {

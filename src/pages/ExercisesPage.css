@@ -64,12 +64,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  transition: background 0.2s, transform 0.3s, border-color 0.2s;
 }
 
 .exercise-card:hover {
   background: #1e1e35;
-  transform: translateX(4px);
+  transform: scale(1.02);
   border-color: #e94560;
 }
 
