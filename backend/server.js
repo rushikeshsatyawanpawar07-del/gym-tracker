@@ -104,9 +104,9 @@ app.post("/add-workout", async (req, res) => {
       return res.status(400).json({ error: "All fields are required" });
     }
 
+    const prs = await detectPRs(exercise, sets, reps, weight);
     const newWorkout = new Workout({ exercise, sets, reps, weight });
     await newWorkout.save();
-    const prs = await detectPRs(exercise, sets, reps, weight);
     res.status(201).json({ ...newWorkout.toObject(), isPR: prs.length > 0, prTypes: prs });
   } catch (err) {
     console.error(err);

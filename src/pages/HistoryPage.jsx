@@ -16,20 +16,21 @@ function HistoryPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [workoutData, prData] = await Promise.all([
-          getWorkouts(),
-          getPRs(decodedExercise),
-        ]);
+        const workoutData = await getWorkouts();
         const filtered = workoutData.filter(
           (w) => w.exercise.toLowerCase() === decodedExercise.toLowerCase()
         );
         setWorkouts(filtered);
+      } catch (err) {
+        console.error("Failed to fetch workouts:", err);
+      }
+      try {
+        const prData = await getPRs(decodedExercise);
         setPrs(prData);
       } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
+        console.error("Failed to fetch PRs:", err);
       }
+      setLoading(false);
     };
     fetchData();
   }, [decodedExercise]);
