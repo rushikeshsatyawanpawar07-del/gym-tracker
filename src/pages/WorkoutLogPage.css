@@ -234,6 +234,41 @@ input[type="number"] {
   color: #e94560;
 }
 
+.pr-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #ffd700, #ffaa00);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0 0;
+  animation: prToastIn 0.4s ease-out;
+}
+
+@keyframes prToastIn {
+  from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pr-toast-icon {
+  font-size: 1.8rem;
+}
+
+.pr-toast-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.pr-toast-text strong {
+  font-size: 0.95rem;
+  color: #1a1a2e;
+}
+
+.pr-toast-text span {
+  font-size: 0.8rem;
+  color: #333350;
+}
+
 @media (max-width: 500px) {
   .log-form {
     padding: 1.5rem;

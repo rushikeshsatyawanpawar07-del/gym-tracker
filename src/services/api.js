@@ -21,3 +21,9 @@ export const deleteWorkout = async (id) => {
   if (!res.ok) throw new Error("Failed to delete workout");
   return res.json();
 };
+
+export const getPRs = async (exerciseName) => {
+  const res = await fetch(`/api/workouts/prs/${encodeURIComponent(exerciseName)}`);
+  if (!res.ok) throw new Error("Failed to fetch PRs");
+  return res.json();
+};

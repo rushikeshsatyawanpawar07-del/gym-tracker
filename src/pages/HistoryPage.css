@@ -206,6 +206,144 @@
   color: #555570;
 }
 
+.pr-stat-box {
+  border-color: #ffd700;
+}
+
+.pr-stat-num {
+  color: #ffd700;
+}
+
+.pr-milestones {
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.pr-milestones-title {
+  color: #ffd700;
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+}
+
+.pr-milestones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pr-milestone-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #1a1a2e, #2a2a1e);
+  border: 1px solid #ffd700;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  animation: prSlideIn 0.3s ease-out;
+}
+
+@keyframes prSlideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.pr-milestone-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffd700;
+  color: #1a1a2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.pr-milestone-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.pr-milestone-date {
+  font-size: 0.75rem;
+  color: #a0a0b0;
+}
+
+.pr-milestone-details {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.pr-milestone-1rm {
+  font-size: 0.75rem;
+  color: #ffd700;
+  font-weight: 700;
+}
+
+.pr-milestone-types {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.pr-milestone-tag {
+  background: #ffd700;
+  color: #1a1a2e;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.pr-card {
+  border-color: #ffd700;
+  background: linear-gradient(135deg, #1a1a2e, #2a2a1e);
+}
+
+.pr-badge-sm {
+  margin-left: 0.4rem;
+  font-size: 0.85rem;
+  cursor: help;
+}
+
+.history-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.pr-types {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.pr-type-tag {
+  background: #ffd700;
+  color: #1a1a2e;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+}
+
+.pr-est-1rm {
+  font-size: 0.7rem;
+  color: #ffd700;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
 @media (max-width: 600px) {
   .history-stats {
     gap: 0.5rem;

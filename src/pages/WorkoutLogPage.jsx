@@ -16,6 +16,7 @@ function WorkoutLogPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [prToast, setPrToast] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,13 +27,17 @@ function WorkoutLogPage() {
     setLoading(true);
     setError("");
     setSuccess(false);
+    setPrToast(null);
     try {
-      await addWorkout({
+      const result = await addWorkout({
         exercise: decodedExercise,
         sets: Number(sets),
         reps: Number(reps),
         weight: Number(weight),
       });
+      if (result.isPR) {
+        setPrToast(result.prTypes);
+      }
       setSuccess(true);
       setTimeout(() => navigate(-1), 1500);
     } catch (err) {
@@ -112,6 +117,15 @@ function WorkoutLogPage() {
               />
             </div>
           </div>
+          {prToast && (
+            <div className="pr-toast">
+              <span className="pr-toast-icon">&#127942;</span>
+              <div className="pr-toast-text">
+                <strong>New Personal Record!</strong>
+                <span>{prToast.join(", ")} PR</span>
+              </div>
+            </div>
+          )}
           {error && <p className="form-error">{error}</p>}
           {success && <p className="form-success">Saved! Going back...</p>}
           <button type="submit" className="save-btn" disabled={loading}>

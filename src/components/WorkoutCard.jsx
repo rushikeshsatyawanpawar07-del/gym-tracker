@@ -2,7 +2,7 @@ import React from "react";
 import { deleteWorkout } from "../services/api";
 import "./WorkoutCard.css";
 
-function WorkoutCard({ workout, onDelete }) {
+function WorkoutCard({ workout, onDelete, isPR, prTypes }) {
   const date = new Date(workout.date).toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
@@ -25,7 +25,10 @@ function WorkoutCard({ workout, onDelete }) {
   return (
     <div className="workout-card">
       <div className="card-header">
-        <h3 className="exercise-name">{workout.exercise}</h3>
+        <h3 className="exercise-name">
+          {workout.exercise}
+          {isPR && <span className="pr-badge" title={`PR: ${prTypes?.join(", ")}`}>&#127942;</span>}
+        </h3>
         <button className="delete-btn" onClick={handleDelete} title="Delete">
           &#10005;
         </button>
