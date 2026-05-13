@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { muscleGroups, exercisesByMuscle } from "../data/exercises";
 import "./HomePage.css";
 
@@ -11,8 +12,23 @@ function MuscleIcon({ icon, color }) {
 }
 
 function HomePage() {
+  const { user, logout } = useAuth();
+
   return (
     <div className="home">
+      <nav className="top-nav">
+        <div className="nav-user">
+          {user?.photoURL ? (
+            <img src={user.photoURL} alt="" className="nav-avatar" />
+          ) : (
+            <div className="nav-avatar-placeholder">
+              {user?.displayName?.charAt(0) || "U"}
+            </div>
+          )}
+          <span className="nav-name">{user?.displayName}</span>
+        </div>
+        <button className="nav-logout" onClick={logout}>Logout</button>
+      </nav>
       <div className="home-header">
         <h1>Gym Tracker</h1>
         <p>Select a muscle group to start logging</p>

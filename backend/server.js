@@ -25,6 +25,8 @@ const workoutSchema = new mongoose.Schema({
   reps: { type: Number, required: true },
   weight: { type: Number, required: true },
   date: { type: Date, default: Date.now },
+  userId: { type: String, required: true },
+  userEmail: { type: String, required: true },
 });
 
 const Workout = mongoose.model("Workout", workoutSchema);
@@ -32,9 +34,10 @@ const Workout = mongoose.model("Workout", workoutSchema);
 const calc1RM = (weight, reps) => weight * (1 + reps / 30);
 const calcVolume = (sets, reps, weight) => sets * reps * weight;
 
-const detectPRs = async (exercise, sets, reps, weight) => {
+const detectPRs = async (exercise, sets, reps, weight, userId) => {
   const past = await Workout.find({
-    exercise: { $regex: new RegExp(`^${exercise}$`, "i") }
+    exercise: { $regex: new RegExp(`^${exercise}$`, "i") },
+    userId,
   });
   if (past.length === 0) return ["1RM", "Volume", "Weight"];
 
@@ -54,9 +57,10 @@ const detectPRs = async (exercise, sets, reps, weight) => {
   return prs;
 };
 
-const getPRWorkouts = async (exercise) => {
+const getPRWorkouts = async (exercise, userId) => {
   const all = await Workout.find({
-    exercise: { $regex: new RegExp(`^${exercise}$`, "i") }
+    exercise: { $regex: new RegExp(`^${exercise}$`, "i") },
+    userId,
   }).sort({ date: 1 });
 
   const prs = [];
@@ -84,10 +88,12 @@ app.get("/", (req, res) => {
   res.send("Gym Tracker API Running 🚀");
 });
 
-// 📥 GET all workouts
+// 📥 GET all workouts (filtered by userId)
 app.get("/workouts", async (req, res) => {
   try {
-    const workouts = await Workout.find().sort({ date: -1 });
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ error: "userId is required" });
+    const workouts = await Workout.find({ userId }).sort({ date: -1 });
     res.json(workouts);
   } catch (err) {
     console.error(err);
@@ -98,14 +104,14 @@ app.get("/workouts", async (req, res) => {
 // ➕ ADD workout
 app.post("/add-workout", async (req, res) => {
   try {
-    const { exercise, sets, reps, weight } = req.body;
+    const { exercise, sets, reps, weight, userId, userEmail } = req.body;
 
-    if (!exercise || !sets || !reps || !weight) {
+    if (!exercise || !sets || !reps || !weight || !userId || !userEmail) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    const prs = await detectPRs(exercise, sets, reps, weight);
-    const newWorkout = new Workout({ exercise, sets, reps, weight });
+    const prs = await detectPRs(exercise, sets, reps, weight, userId);
+    const newWorkout = new Workout({ exercise, sets, reps, weight, userId, userEmail });
     await newWorkout.save();
     res.status(201).json({ ...newWorkout.toObject(), isPR: prs.length > 0, prTypes: prs });
   } catch (err) {
@@ -114,10 +120,12 @@ app.post("/add-workout", async (req, res) => {
   }
 });
 
-// 🏆 GET PR milestones for an exercise
+// 🏆 GET PR milestones for an exercise (filtered by userId)
 app.get("/workouts/prs/:exercise", async (req, res) => {
   try {
-    const prs = await getPRWorkouts(req.params.exercise);
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ error: "userId is required" });
+    const prs = await getPRWorkouts(req.params.exercise, userId);
     res.json(prs);
   } catch (err) {
     console.error(err);
@@ -125,9 +133,14 @@ app.get("/workouts/prs/:exercise", async (req, res) => {
   }
 });
 
-// ❌ DELETE workout
+// ❌ DELETE workout (verify ownership)
 app.delete("/workouts/:id", async (req, res) => {
   try {
+    const { userId } = req.query;
+    if (!userId) return res.status(400).json({ error: "userId is required" });
+    const workout = await Workout.findById(req.params.id);
+    if (!workout) return res.status(404).json({ error: "Workout not found" });
+    if (workout.userId !== userId) return res.status(403).json({ error: "Unauthorized" });
     await Workout.findByIdAndDelete(req.params.id);
     res.json({ message: "Workout deleted ✅" });
   } catch (err) {

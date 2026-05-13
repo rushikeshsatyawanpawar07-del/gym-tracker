@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { muscleGroups } from "../data/exercises";
 import { addWorkout } from "../services/api";
 import "./WorkoutLogPage.css";
 
 function WorkoutLogPage() {
+  const { user } = useAuth();
   const { muscleId, exerciseName } = useParams();
   const navigate = useNavigate();
   const group = muscleGroups.find((g) => g.id === muscleId);
@@ -34,6 +36,8 @@ function WorkoutLogPage() {
         sets: Number(sets),
         reps: Number(reps),
         weight: Number(weight),
+        userId: user.uid,
+        userEmail: user.email,
       });
       if (result.isPR) {
         setPrToast(result.prTypes);

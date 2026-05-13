@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { muscleGroups } from "../data/exercises";
 import { getWorkouts, deleteWorkout, getPRs } from "../services/api";
 import "./HistoryPage.css";
 
 function HistoryPage() {
+  const { user } = useAuth();
   const { muscleId, exerciseName } = useParams();
   const group = muscleGroups.find((g) => g.id === muscleId);
   const decodedExercise = decodeURIComponent(exerciseName);
@@ -14,9 +16,10 @@ function HistoryPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!user) return;
     const fetchData = async () => {
       try {
-        const workoutData = await getWorkouts();
+        const workoutData = await getWorkouts(user.uid);
         const filtered = workoutData.filter(
           (w) => w.exercise.toLowerCase() === decodedExercise.toLowerCase()
         );
@@ -25,7 +28,7 @@ function HistoryPage() {
         console.error("Failed to fetch workouts:", err);
       }
       try {
-        const prData = await getPRs(decodedExercise);
+        const prData = await getPRs(decodedExercise, user.uid);
         setPrs(prData);
       } catch (err) {
         console.error("Failed to fetch PRs:", err);
@@ -33,7 +36,7 @@ function HistoryPage() {
       setLoading(false);
     };
     fetchData();
-  }, [decodedExercise]);
+  }, [decodedExercise, user]);
 
   const isWorkoutPR = (workoutId) => prs.some((p) => p._id === workoutId);
   const getPRTypes = (workoutId) => {
@@ -46,7 +49,7 @@ function HistoryPage() {
   };
 
   const handleDelete = async (id) => {
-    await deleteWorkout(id);
+    await deleteWorkout(id, user.uid);
     setWorkouts((prev) => prev.filter((w) => w._id !== id));
   };
 
