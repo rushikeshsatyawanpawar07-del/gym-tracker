@@ -78,6 +78,17 @@
   flex-shrink: 0;
 }
 
+.login-error {
+  margin: 1rem 0 0;
+  padding: 0.75rem;
+  background: rgba(233, 69, 96, 0.1);
+  border: 1px solid #e94560;
+  border-radius: 8px;
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
 @media (max-width: 400px) {
   .login-container {
     padding: 2rem 1.5rem;

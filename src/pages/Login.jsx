@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
 import { useAuth } from "../context/AuthContext";
@@ -7,16 +7,23 @@ import "./Login.css";
 
 function Login() {
   const { user } = useAuth();
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-    if (user) navigate("/", { replace: true });
-  }, [user, navigate]);
+  if (user) return <Navigate to="/" replace />;
 
   const handleGoogleLogin = async () => {
+    setError("");
     try {
       await signInWithPopup(auth, googleProvider);
     } catch (err) {
+      const msg = err.code === "auth/popup-blocked"
+        ? "Popup blocked by browser. Allow popups and try again."
+        : err.code === "auth/unauthorized-domain"
+        ? "This domain is not authorized. Add it in Firebase Console."
+        : err.code === "auth/operation-not-allowed"
+        ? "Google sign-in is not enabled. Enable it in Firebase Console."
+        : err.message || "Login failed. Check console for details.";
+      setError(msg);
       console.error("Login failed:", err);
     }
   };
@@ -36,6 +43,7 @@ function Login() {
           </svg>
           Continue with Google
         </button>
+        {error && <p className="login-error">{error}</p>}
       </div>
     </div>
   );
